@@ -28,10 +28,9 @@ def predict_emotion(text, model, vectorizer):
     return prediction
 
 
-st.set_page_config(page_title="AI Mental Health Support Chatbot", page_icon="💙", layout="centered")
+st.set_page_config(page_title="AI Mental Health Support Chatbot", page_icon="💙")
 
 st.title("💙 AI Mental Health Support Chatbot")
-st.write("This chatbot detects emotion from text and gives a supportive response.")
 
 st.warning(
     "Disclaimer: This chatbot provides basic emotional support only. "
@@ -40,7 +39,7 @@ st.warning(
 
 model, vectorizer = load_model()
 
-user_text = st.text_area("Enter your message:", placeholder="Type how you feel here...")
+user_text = st.text_area("Enter your message:")
 
 if st.button("Analyze"):
     if user_text.strip():
@@ -52,10 +51,11 @@ if st.button("Analyze"):
         response = generate_response(user_text, final_emotion, risk, intensity, context)
 
         st.subheader("Result")
-        st.write(f"**Detected Emotion:** {final_emotion}")
+        st.write(f"**Emotion:** {final_emotion}")
         st.write(f"**Intensity:** {intensity}")
         st.write(f"**Context:** {context}")
-        st.write(f"**Risk Level:** {risk}")
-        st.write(f"**Chatbot Response:** {response}")
+        st.write(f"**Risk:** {risk}")
+        st.write(f"**Response:** {response}")
     else:
-        st.error("Please enter a message first.")
+        st.error("Please enter a message")
+        
